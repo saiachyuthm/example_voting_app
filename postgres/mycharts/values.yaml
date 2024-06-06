@@ -1,0 +1,19 @@
+replicaCount: 1
+
+deploy:
+  name: postgres-deploy
+  podName: postgres-pod
+  containerName: postgres
+  image: postgres
+  port: 5432
+
+service:
+  name: db
+  port: 5432
+  targetPort: 5432
+
+env:
+  - name: POSTGRES_USER
+    value: "postgres"
+  - name: POSTGRES_PASSWORD
+    value: "postgres"

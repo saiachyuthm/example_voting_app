@@ -1,0 +1,15 @@
+replicaCount: 1
+
+deploy:
+  name: result-deploy
+  podName: result-app-pod
+  containerName: result-app
+  image: saiachyuthm/result-app
+  port: 80
+
+service:
+  name: result-service
+  type: NodePort
+  port: 80
+  targetPort: 80
+  nodePort: 30005

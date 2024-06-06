@@ -1,0 +1,8 @@
+replicaCount: 1
+
+deploy:
+  name: worker-deploy
+  podName: worker-app-pod
+  containerName: worker-app
+  image: saiachyuthm/worker-app
+

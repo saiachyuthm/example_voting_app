@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.deploy.name }}
+  labels:
+    {{- include "mycharts.labels" . |
+    nindent 4 }}
+
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "mycharts.selectorLabels" . |
+      nindent 6 }}
+  template:
+    metadata:
+      name: {{ .Values.deploy.podName }}
+      labels:
+        {{- include "mycharts.selectorLabels" . |
+      nindent 8 }}
+
+    spec:
+      containers:
+        - name: {{ .Values.deploy.containerName }}
+          image: {{ .Values.deploy.image | quote }}
+          ports:
+            - containerPort: {{ .Values.deploy.port }}
+          env:
+          {{- toYaml .Values.env | nindent 12 }}
+          
+          # env:
+          #   - name: POSTGRES_USER
+          #     valueFrom:
+          #       secretKeyRef:
+          #         name: my-postgres-secret
+          #         key: username
+          #   - name: POSTGRES_PASSWORD
+          #     valueFrom:
+          #       secretKeyRef:
+          #         name: my-postgres-secret
+          #         key: password

@@ -1,0 +1,13 @@
+replicaCount: 1
+
+deploy:
+  name: redis-deploy
+  podName: redis-pod
+  containerName: redis
+  image: redis
+  port: 6379
+
+service:
+  name: redis
+  port: 6379
+  targetPort: 6379

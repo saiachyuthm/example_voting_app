@@ -1,0 +1,15 @@
+replicaCount: 1
+
+deploy:
+  name: voting-deploy
+  podName: voting-app-pod
+  containerName: voting-app
+  image: saiachyuthm/voting-app
+  port: 80
+
+service:
+  name: voting-service
+  type: NodePort
+  port: 80
+  targetPort: 80
+  nodePort: 30004
